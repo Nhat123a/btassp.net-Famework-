@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Lab1_9.Models.Nhanviencs>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách Nhân Viên</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<p>
+    @Html.ActionLink("Hai sinh viên có lương cao nhất", "Luongcaonhat")
+</p>
+<p>
+    @Html.ActionLink("Tìm Kiếm", "Timkiem")
+</p>
+<p>
+    @Html.ActionLink("Tìm Kiếm theo tuoi < 30", "Timkiemtuoi")
+</p>
+<p>
+    @Html.ActionLink("Tìm Kiếm theo phong", "Timkiemtheophong")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hoten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gioitinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngasinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Luong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hSL)
+        </th>
+        <th>@Html.DisplayNameFor(model=>model.phong)</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Hoten)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Gioitinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ngasinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @item.Luong.ToString("N0")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.hSL)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.phong)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Manv })
+        @Html.ActionLink("Details", "Details", new { id = item.Manv })
+        @Html.ActionLink("Delete", "Delete", new { id = item.Manv })
+    </td>
+</tr>
+}
+
+</table>

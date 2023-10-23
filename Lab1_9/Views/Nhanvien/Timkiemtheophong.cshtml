@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Lab1_9.Models.Nhanviencs>
+
+@{
+    ViewBag.Title = "Timkiemtheophong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    bool hasSearched = !string.IsNullOrEmpty(Request.QueryString["tenphong"]);
+}
+@using (Html.BeginForm("Timkiemtheophong", "Nhanvien", FormMethod.Get))
+{
+    @Html.Label("Chọn Tên Phòng")
+    <div class=" col-md-10">
+        <div class="checkbox">
+            @Html.DropDownList("tenphong", new List<SelectListItem>
+            {
+                new SelectListItem { Text = "HA8", Value = "HA8" },
+                new SelectListItem { Text = "HA10", Value = "HA10" }
+                
+            }, "Chọn Phòng", new { @class = "form-control" })
+        </div>
+        <button type="submit">Tìm kiếm</button>
+    </div>
+}
+
+<h2>Kết quả</h2>
+
+@if (hasSearched)
+{
+    if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hoten)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gioitinh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ngasinh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Luong)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.hSL)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hoten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gioitinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ngasinh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Luong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hSL)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
